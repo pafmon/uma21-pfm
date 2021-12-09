@@ -1,0 +1,729 @@
+{
+  "_": {
+    "postman_id": "f5dcfec9-43bc-4af5-937b-59c25606b402"
+  },
+  "item": [
+    {
+      "id": "9ae0a9e0-c018-44fe-bdc0-c595cef8ed1b",
+      "name": "get Recipes",
+      "request": {
+        "name": "get Recipes",
+        "description": {
+          "content": "Returns all recipes",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "recipes"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "method": "GET"
+      },
+      "response": [
+        {
+          "_": {
+            "postman_previewlanguage": "json"
+          },
+          "id": "032f8fb3-7973-4163-8ecd-c5fc748e01a7",
+          "name": "Recipe List",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recipes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "[\n {\n  \"recipeId\": \"occaecat est ut anim\",\n  \"description\": \"tempor ea Duis\",\n  \"ingredients\": \"ad\",\n  \"complexity\": \"officia fugiat occaecat\"\n },\n {\n  \"recipeId\": \"exercitation non incididunt\",\n  \"description\": \"Lorem pariatur\",\n  \"ingredients\": \"ipsum culpa in\",\n  \"complexity\": \"aliqua consequat dolore occaecat\"\n }\n]",
+          "cookie": []
+        },
+        {
+          "_": {
+            "postman_previewlanguage": "json"
+          },
+          "id": "c18b134f-6c86-4737-adbc-808825407091",
+          "name": "unexpected error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recipes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n \"code\": 44542074,\n \"message\": \"sint dolor in deserunt\"\n}",
+          "cookie": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "97fa4859-9f40-4a9e-8222-da19ac3733b1",
+            "type": "text/javascript",
+            "exec": [
+              "// Validate status 2xx \npm.test(\"[GET]::/api/v1/recipes - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n",
+              "// Validate if response header has matching content-type\npm.test(\"[GET]::/api/v1/recipes - Content-Type is application/json\", function () {\n   pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\n});\n",
+              "// Validate if response has JSON Body \npm.test(\"[GET]::/api/v1/recipes - Response has JSON Body\", function () {\n    pm.response.to.have.jsonBody();\n});\n",
+              "// Response Validation\nconst schema = {\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"recipeId\":{\"type\":\"string\",\"minLength\":1},\"description\":{\"type\":\"string\",\"minLength\":1},\"ingredients\":{\"type\":\"string\",\"minLength\":1},\"complexity\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"recipeId\",\"description\",\"ingredients\"]}}\n\n// Validate if response matches JSON schema \npm.test(\"[GET]::/api/v1/recipes - Schema is valid\", function() {\n    pm.response.to.have.jsonSchema(schema,{unknownFormats: [\"int32\", \"int64\"]});\n});\n"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fa70ccca-435d-42c1-8c09-4fb84dd3e1e7",
+      "name": "add Recipe",
+      "request": {
+        "name": "add Recipe",
+        "description": {
+          "content": "Creates a new recipe",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "recipes"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"recipeId\": \"irure\",\n    \"description\": \"dolor\",\n    \"ingredients\": \"sunt Duis non ipsum\",\n    \"complexity\": \"aliquip in culpa\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "_": {
+            "postman_previewlanguage": "text"
+          },
+          "id": "063e9ee4-84ce-4dfe-bba5-8f747305d7d0",
+          "name": "recipe created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recipes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"recipeId\": \"irure\",\n    \"description\": \"dolor\",\n    \"ingredients\": \"sunt Duis non ipsum\",\n    \"complexity\": \"aliquip in culpa\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": []
+        },
+        {
+          "_": {
+            "postman_previewlanguage": "json"
+          },
+          "id": "7dfc710e-4612-43ea-9623-16302ccd1aba",
+          "name": "unexpected error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recipes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"recipeId\": \"irure\",\n    \"description\": \"dolor\",\n    \"ingredients\": \"sunt Duis non ipsum\",\n    \"complexity\": \"aliquip in culpa\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n \"code\": 44542074,\n \"message\": \"sint dolor in deserunt\"\n}",
+          "cookie": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "b34607dc-c736-4b7a-aba1-4326dc408c74",
+            "type": "text/javascript",
+            "exec": [
+              "// Validate status 2xx \npm.test(\"[POST]::/api/v1/recipes - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "3da9d504-330a-47e8-bd7a-6eae3c130557",
+      "name": "find Recipe Byrecipe Id",
+      "request": {
+        "name": "find Recipe Byrecipe Id",
+        "description": {
+          "content": "Returns a recipe by recipeId",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "recipes",
+            ":recipeId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "description": {
+                "content": "(Required) recipeId of recipe to fetch",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "laboris ut aute",
+              "key": "recipeId"
+            }
+          ]
+        },
+        "method": "GET"
+      },
+      "response": [
+        {
+          "_": {
+            "postman_previewlanguage": "json"
+          },
+          "id": "996cf760-6e90-48d6-bdd1-64f25ab7c600",
+          "name": "Recipe returned",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recipes",
+                ":recipeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) recipeId of recipe to fetch",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "laboris ut aute",
+                  "key": "recipeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n \"recipeId\": \"irure\",\n \"description\": \"dolor\",\n \"ingredients\": \"sunt Duis non ipsum\",\n \"complexity\": \"aliquip in culpa\"\n}",
+          "cookie": []
+        },
+        {
+          "_": {
+            "postman_previewlanguage": "json"
+          },
+          "id": "713b8f68-d1d3-444b-a449-9ae4ba36915a",
+          "name": "unexpected error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recipes",
+                ":recipeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) recipeId of recipe to fetch",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "laboris ut aute",
+                  "key": "recipeId"
+                }
+              ]
+            },
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n \"code\": 44542074,\n \"message\": \"sint dolor in deserunt\"\n}",
+          "cookie": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "bb0cba54-794b-4d72-af4d-4f75f7f67b39",
+            "type": "text/javascript",
+            "exec": [
+              "// Validate status 2xx \npm.test(\"[GET]::/api/v1/recipes/:recipeId - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n",
+              "// Validate if response header has matching content-type\npm.test(\"[GET]::/api/v1/recipes/:recipeId - Content-Type is application/json\", function () {\n   pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\n});\n",
+              "// Validate if response has JSON Body \npm.test(\"[GET]::/api/v1/recipes/:recipeId - Response has JSON Body\", function () {\n    pm.response.to.have.jsonBody();\n});\n",
+              "// Response Validation\nconst schema = {\"type\":\"object\",\"properties\":{\"recipeId\":{\"type\":\"string\",\"minLength\":1},\"description\":{\"type\":\"string\",\"minLength\":1},\"ingredients\":{\"type\":\"string\",\"minLength\":1},\"complexity\":{\"type\":\"string\",\"minLength\":1}},\"required\":[\"recipeId\",\"description\",\"ingredients\"]}\n\n// Validate if response matches JSON schema \npm.test(\"[GET]::/api/v1/recipes/:recipeId - Schema is valid\", function() {\n    pm.response.to.have.jsonSchema(schema,{unknownFormats: [\"int32\", \"int64\"]});\n});\n"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "6ffa9166-8328-4c90-a05e-7402cefa70d0",
+      "name": "delete Recipe",
+      "request": {
+        "name": "delete Recipe",
+        "description": {
+          "content": "deletes a single recipe based on the recipeId",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "recipes",
+            ":recipeId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "description": {
+                "content": "(Required) ID of recipe to delete",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "laboris ut aute",
+              "key": "recipeId"
+            }
+          ]
+        },
+        "method": "DELETE"
+      },
+      "response": [
+        {
+          "_": {
+            "postman_previewlanguage": "text"
+          },
+          "id": "ea82c1fc-a63e-4413-9f10-ecb2f7b2645c",
+          "name": "recipe deleted",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recipes",
+                ":recipeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ID of recipe to delete",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "laboris ut aute",
+                  "key": "recipeId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": []
+        },
+        {
+          "_": {
+            "postman_previewlanguage": "json"
+          },
+          "id": "7b39328d-ea56-4346-a459-6b6ce6867cd0",
+          "name": "unexpected error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recipes",
+                ":recipeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ID of recipe to delete",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "laboris ut aute",
+                  "key": "recipeId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n \"code\": 44542074,\n \"message\": \"sint dolor in deserunt\"\n}",
+          "cookie": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "206f144a-e815-4606-b51b-9af4a161403b",
+            "type": "text/javascript",
+            "exec": [
+              "// Validate status 2xx \npm.test(\"[DELETE]::/api/v1/recipes/:recipeId - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "bd8a2f62-7d3b-4d76-8a82-1cd847c4aaf6",
+      "name": "update Recipe",
+      "request": {
+        "name": "update Recipe",
+        "description": {
+          "content": "Update a recipe based on its recipeId",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "api",
+            "v1",
+            "recipes",
+            ":recipeId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "description": {
+                "content": "(Required) ID of recipe to put",
+                "type": "text/plain"
+              },
+              "type": "any",
+              "value": "laboris ut aute",
+              "key": "recipeId"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"recipeId\": \"irure\",\n    \"description\": \"dolor\",\n    \"ingredients\": \"sunt Duis non ipsum\",\n    \"complexity\": \"aliquip in culpa\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "_": {
+            "postman_previewlanguage": "text"
+          },
+          "id": "52cb1588-754e-42eb-b3fc-0d80e913b47f",
+          "name": "recipe updated",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recipes",
+                ":recipeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ID of recipe to put",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "laboris ut aute",
+                  "key": "recipeId"
+                }
+              ]
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"recipeId\": \"irure\",\n    \"description\": \"dolor\",\n    \"ingredients\": \"sunt Duis non ipsum\",\n    \"complexity\": \"aliquip in culpa\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": []
+        },
+        {
+          "_": {
+            "postman_previewlanguage": "json"
+          },
+          "id": "94049d5b-6563-4f22-b970-cb2d88cc32cb",
+          "name": "unexpected error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "recipes",
+                ":recipeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "(Required) ID of recipe to put",
+                    "type": "text/plain"
+                  },
+                  "type": "any",
+                  "value": "laboris ut aute",
+                  "key": "recipeId"
+                }
+              ]
+            },
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"recipeId\": \"irure\",\n    \"description\": \"dolor\",\n    \"ingredients\": \"sunt Duis non ipsum\",\n    \"complexity\": \"aliquip in culpa\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n \"code\": 44542074,\n \"message\": \"sint dolor in deserunt\"\n}",
+          "cookie": []
+        }
+      ],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "51d255a1-77eb-44a5-9545-a217781d0b12",
+            "type": "text/javascript",
+            "exec": [
+              "// Validate status 2xx \npm.test(\"[PUT]::/api/v1/recipes/:recipeId - Status code is 2xx\", function () {\n   pm.response.to.be.success;\n});\n"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "f6001296-6eb1-42d8-b7df-540dffb731e8",
+        "type": "text/javascript",
+        "exec": []
+      }
+    }
+  ],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f5dcfec9-43bc-4af5-937b-59c25606b402",
+    "name": "Recipe list",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is an API for recipes  \n\nContact Support:\n Name: PabloFM\n Email: pablofm@us.es",
+      "type": "text/plain"
+    }
+  }
+}
