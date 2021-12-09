@@ -3,7 +3,7 @@
 module.exports.getRecipes = function getRecipes(req, res, next) {
   var data = [
     {
-      "recipeId": "espetos",
+      "recipeIdS": "espetos",
       "description": "Sardinas a la brasa ensartadas en un palo",
       "ingredients": "Sardina, sal y brasas",
       "complexity": "media"
